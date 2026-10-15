@@ -1,8 +1,8 @@
 import { REACTIONS, avatarFor, timeAgo } from "../utils.js";
 
 // A component is a function that returns UI.
-// Props (id, text, reactions, createdAt) are its inputs.
-export default function Post({ id, text, reactions, createdAt }) {
+// Props (id, text, reactions, createdAt, onReact) are its inputs.
+export default function Post({ id, text, reactions, createdAt, onReact }) {
   const author = avatarFor(id);
 
   return (
@@ -18,7 +18,7 @@ export default function Post({ id, text, reactions, createdAt }) {
         <p className="post-text">{text}</p>
         <div className="reactions">
           {REACTIONS.map(({ type, emoji }) => (
-            <button key={type} className="reaction">
+            <button key={type} className="reaction" onClick={() => onReact(type)}>
               <span className="emoji">{emoji}</span>
               {reactions[type]}
             </button>

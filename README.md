@@ -2,7 +2,7 @@
 
 An anonymous campus feed: post a short message, and everyone else reacts with 🔥 😂 or 😢.
 
-> ### You are on `02-react-basics`
+> ### You are on `03-react-state`
 >
 > **Run it:**
 > ```bash
@@ -11,9 +11,11 @@ An anonymous campus feed: post a short message, and everyone else reacts with �
 > ```
 > Then open http://localhost:5173
 >
-> **What to notice:** the feed is now React components. `src/App.jsx` maps over a hardcoded array, and `src/components/Post.jsx` receives each post as props. The reaction buttons don’t do anything yet.
+> **What to notice:** `src/App.jsx` keeps the posts in `useState`. Posting (`src/components/PostForm.jsx`) and reacting create a new array with `setPosts`, and React redraws the feed for us. No DOM code anywhere.
 >
-> **Next:** `git checkout 03-react-state`
+> **Try this:** post something, then refresh the page. Where did your post go?
+>
+> **Next:** `git checkout 04-express-api`
 
 This repo is the code for the **Uni Feed MERN session**. Each step of the session is its own branch, and every branch runs on its own. If you fall behind, check out the next branch and carry on.
 
