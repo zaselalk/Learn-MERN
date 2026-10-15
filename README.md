@@ -2,13 +2,18 @@
 
 An anonymous campus feed: post a short message, and everyone else reacts with 🔥 😂 or 😢.
 
-> ### You are on `01-plain-html`
+> ### You are on `02-react-basics`
 >
-> **Run it:** open `index.html` in your browser. No install needed.
+> **Run it:**
+> ```bash
+> npm install
+> npm run dev
+> ```
+> Then open http://localhost:5173
 >
-> **What to notice:** the feed is plain HTML, CSS and JavaScript (`app.js`). Every new post or reaction means rebuilding the DOM by hand with `createElement` and `append`.
+> **What to notice:** the feed is now React components. `src/App.jsx` maps over a hardcoded array, and `src/components/Post.jsx` receives each post as props. The reaction buttons don’t do anything yet.
 >
-> **Next:** `git checkout 02-react-basics`
+> **Next:** `git checkout 03-react-state`
 
 This repo is the code for the **Uni Feed MERN session**. Each step of the session is its own branch, and every branch runs on its own. If you fall behind, check out the next branch and carry on.
 
