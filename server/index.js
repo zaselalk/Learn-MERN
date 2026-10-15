@@ -1,6 +1,8 @@
 import express from "express";
+import cors from "cors";
 
 const app = express();
+app.use(cors()); // allow the React app (another origin) to call this API
 app.use(express.json()); // lets us read JSON request bodies (req.body)
 
 const REACTIONS = ["fire", "laugh", "sad"];

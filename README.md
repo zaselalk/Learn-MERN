@@ -2,29 +2,31 @@
 
 An anonymous campus feed: post a short message, and everyone else reacts with 🔥 😂 or 😢.
 
-> ### You are on `04-express-api`
+> ### You are on `05-connect-frontend`
 >
-> **Run the API:**
+> **Run it** in two terminals:
 > ```bash
+> # terminal 1: the API
 > cd server
 > npm install
 > npm run dev
 > ```
-> The API runs on http://localhost:5000. The React app in the root folder is unchanged from `03` and doesn’t use the API yet.
+> ```bash
+> # terminal 2: the React app (from the repo root)
+> npm install
+> npm run dev
+> ```
+> Then open http://localhost:5173
 >
-> **Test it in Postman** (or open the GET one in your browser):
+> **What to notice:** `src/App.jsx` loads posts with `fetch` in a `useEffect`, and posting or reacting calls the API. Refreshing the page no longer loses posts.
 >
-> | Method | URL | Body (JSON) |
-> |---|---|---|
-> | `GET` | `http://localhost:5000/api/posts` | – |
-> | `POST` | `http://localhost:5000/api/posts` | `{ "text": "Hello from Postman" }` |
-> | `PATCH` | `http://localhost:5000/api/posts/1/react` | `{ "type": "fire" }` |
+> **The CORS moment:** comment out `app.use(cors())` in `server/index.js` and reload. The browser blocks the request, because `localhost:5173` and `localhost:5000` are different origins. Put the line back to fix it.
 >
-> **What to notice:** `server/index.js` keeps posts in an array in memory. Restart the server and they’re gone.
+> **Try this:** restart the server. Your posts are gone again. Why?
 >
 > **Mac users:** if port 5000 is busy, turn off *AirPlay Receiver* in System Settings → General → AirDrop & Handoff.
 >
-> **Next:** `git checkout 05-connect-frontend`
+> **Next:** `git checkout 06-mongodb`
 
 This repo is the code for the **Uni Feed MERN session**. Each step of the session is its own branch, and every branch runs on its own. If you fall behind, check out the next branch and carry on.
 

@@ -1,38 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Post from "./components/Post.jsx";
 import PostForm from "./components/PostForm.jsx";
 
-const minutesAgo = (minutes) => new Date(Date.now() - minutes * 60_000).toISOString();
-
-const startingPosts = [
-  { id: 1, text: "Free pizza at the CS club, 4pm", reactions: { fire: 58, laugh: 6, sad: 1 }, createdAt: minutesAgo(5) },
-  { id: 2, text: "Library Wi-Fi is finally fast!", reactions: { fire: 31, laugh: 2, sad: 0 }, createdAt: minutesAgo(42) },
-  { id: 3, text: "Who else is stuck on Lab 3?", reactions: { fire: 12, laugh: 4, sad: 9 }, createdAt: minutesAgo(180) },
-];
+const API_URL = "http://localhost:5000/api/posts";
 
 export default function App() {
-  // State: data that changes. When it changes, React re-renders.
-  // It still only lives in this tab, so a refresh resets it.
-  const [posts, setPosts] = useState(startingPosts);
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  function addPost(text) {
-    const newPost = {
-      id: Date.now(),
-      text,
-      reactions: { fire: 0, laugh: 0, sad: 0 },
-      createdAt: new Date().toISOString(),
-    };
-    setPosts([newPost, ...posts]); // a new array, not posts.push()
+  // Load the posts from the API once, when the app first appears.
+  useEffect(() => {
+    fetch(API_URL)
+      .then((res) => res.json())
+      .then(setPosts)
+      .catch(() => setError("Can’t reach the API. Is the server running?"))
+      .finally(() => setLoading(false));
+  }, []);
+
+  async function addPost(text) {
+    const res = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ text }),
+    });
+    const newPost = await res.json();
+    setPosts((current) => [newPost, ...current]);
   }
 
-  function react(id, type) {
-    setPosts(
-      posts.map((post) =>
-        post.id === id
-          ? { ...post, reactions: { ...post.reactions, [type]: post.reactions[type] + 1 } }
-          : post
-      )
-    );
+  async function react(id, type) {
+    const res = await fetch(`${API_URL}/${id}/react`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ type }),
+    });
+    const updated = await res.json();
+    setPosts((current) => current.map((post) => (post._id === id ? updated : post)));
   }
 
   return (
@@ -50,15 +53,25 @@ export default function App() {
         <PostForm onPost={addPost} />
 
         <section className="feed">
-          {posts.length === 0 && <p className="empty">No posts yet. Be the first! ✨</p>}
+          {loading && (
+            <>
+              <div className="skeleton" />
+              <div className="skeleton" />
+              <div className="skeleton" />
+            </>
+          )}
+          {error && <p className="empty">{error}</p>}
+          {!loading && !error && posts.length === 0 && (
+            <p className="empty">No posts yet. Be the first! ✨</p>
+          )}
           {posts.map((post) => (
             <Post
-              key={post.id}
-              id={post.id}
+              key={post._id}
+              id={post._id}
               text={post.text}
               reactions={post.reactions}
               createdAt={post.createdAt}
-              onReact={(type) => react(post.id, type)}
+              onReact={(type) => react(post._id, type)}
             />
           ))}
         </section>
