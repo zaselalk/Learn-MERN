@@ -2,6 +2,14 @@
 
 An anonymous campus feed: post a short message, and everyone else reacts with 🔥 😂 or 😢.
 
+> ### You are on `01-plain-html`
+>
+> **Run it:** open `index.html` in your browser. No install needed.
+>
+> **What to notice:** the feed is plain HTML, CSS and JavaScript (`app.js`). Every new post or reaction means rebuilding the DOM by hand with `createElement` and `append`.
+>
+> **Next:** `git checkout 02-react-basics`
+
 This repo is the code for the **Uni Feed MERN session**. Each step of the session is its own branch, and every branch runs on its own. If you fall behind, check out the next branch and carry on.
 
 | Branch | Concept | What you see |

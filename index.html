@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Uni Feed</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar-inner">
+        <span class="logo">uni<span>feed</span></span>
+        <span class="tagline">Anonymous campus chatter</span>
+      </div>
+    </header>
+
+    <main class="app">
+      <form id="post-form" class="composer">
+        <div class="composer-row">
+          <div class="avatar">🙂</div>
+          <textarea id="post-text" maxlength="200" placeholder="What’s happening on campus?"></textarea>
+        </div>
+        <div class="composer-footer">
+          <span id="counter" class="counter">200</span>
+          <button id="post-button" type="submit" class="btn-post" disabled>Post</button>
+        </div>
+      </form>
+
+      <!-- app.js fills this with posts -->
+      <section id="feed" class="feed"></section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
