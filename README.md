@@ -2,20 +2,29 @@
 
 An anonymous campus feed: post a short message, and everyone else reacts with 🔥 😂 or 😢.
 
-> ### You are on `03-react-state`
+> ### You are on `04-express-api`
 >
-> **Run it:**
+> **Run the API:**
 > ```bash
+> cd server
 > npm install
 > npm run dev
 > ```
-> Then open http://localhost:5173
+> The API runs on http://localhost:5000. The React app in the root folder is unchanged from `03` and doesn’t use the API yet.
 >
-> **What to notice:** `src/App.jsx` keeps the posts in `useState`. Posting (`src/components/PostForm.jsx`) and reacting create a new array with `setPosts`, and React redraws the feed for us. No DOM code anywhere.
+> **Test it in Postman** (or open the GET one in your browser):
 >
-> **Try this:** post something, then refresh the page. Where did your post go?
+> | Method | URL | Body (JSON) |
+> |---|---|---|
+> | `GET` | `http://localhost:5000/api/posts` | – |
+> | `POST` | `http://localhost:5000/api/posts` | `{ "text": "Hello from Postman" }` |
+> | `PATCH` | `http://localhost:5000/api/posts/1/react` | `{ "type": "fire" }` |
 >
-> **Next:** `git checkout 04-express-api`
+> **What to notice:** `server/index.js` keeps posts in an array in memory. Restart the server and they’re gone.
+>
+> **Mac users:** if port 5000 is busy, turn off *AirPlay Receiver* in System Settings → General → AirDrop & Handoff.
+>
+> **Next:** `git checkout 05-connect-frontend`
 
 This repo is the code for the **Uni Feed MERN session**. Each step of the session is its own branch, and every branch runs on its own. If you fall behind, check out the next branch and carry on.
 
