@@ -2,7 +2,9 @@
 
 An anonymous campus feed: post a short message, and everyone else reacts with 🔥 😂 or 😢.
 
-> ### You are on `05-connect-frontend`
+> ### You are on `06-mongodb`
+>
+> **Set up the database:** copy `server/.env.example` to `server/.env` and set `MONGODB_URI` to your local MongoDB or your Atlas connection string.
 >
 > **Run it** in two terminals:
 > ```bash
@@ -18,15 +20,15 @@ An anonymous campus feed: post a short message, and everyone else reacts with �
 > ```
 > Then open http://localhost:5173
 >
-> **What to notice:** `src/App.jsx` loads posts with `fetch` in a `useEffect`, and posting or reacting calls the API. Refreshing the page no longer loses posts.
+> **What to notice:** `server/models/Post.js` defines a Mongoose schema and model, and the routes in `server/index.js` use `Post.find`, `Post.create` and `Post.findByIdAndUpdate` instead of an array. Restart the server: your posts are still there.
 >
-> **The CORS moment:** comment out `app.use(cors())` in `server/index.js` and reload. The browser blocks the request, because `localhost:5173` and `localhost:5000` are different origins. Put the line back to fix it.
->
-> **Try this:** restart the server. Your posts are gone again. Why?
+> **Live demo from phones:** the React dev server now runs with `--host`, so it prints a *Network* URL like `http://192.168.1.20:5173`. Phones on the same Wi-Fi can open it and post. If they can’t connect, allow Node through the laptop’s firewall.
 >
 > **Mac users:** if port 5000 is busy, turn off *AirPlay Receiver* in System Settings → General → AirDrop & Handoff.
 >
-> **Next:** `git checkout 06-mongodb`
+> 🎉 That’s the full MERN stack: MongoDB, Express, React, Node.
+>
+> **Bonus:** `git checkout 07-folder-structure` to see the same app organised the way real projects are.
 
 This repo is the code for the **Uni Feed MERN session**. Each step of the session is its own branch, and every branch runs on its own. If you fall behind, check out the next branch and carry on.
 

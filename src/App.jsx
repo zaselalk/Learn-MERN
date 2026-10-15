@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import Post from "./components/Post.jsx";
 import PostForm from "./components/PostForm.jsx";
 
-const API_URL = "http://localhost:5000/api/posts";
+// Use the same host the page came from, so phones on the Wi-Fi
+// (opening http://<laptop-IP>:5173) reach the laptop's API, not their own.
+const API_URL = `http://${window.location.hostname}:5000/api/posts`;
 
 export default function App() {
   const [posts, setPosts] = useState([]);
