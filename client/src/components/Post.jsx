@@ -1,4 +1,6 @@
-import { REACTIONS, avatarFor, timeAgo } from "../utils.js";
+import { REACTIONS } from "../constants/reactions.js";
+import { avatarFor } from "../utils/avatar.js";
+import { timeAgo } from "../utils/timeAgo.js";
 
 // A component is a function that returns UI.
 // Props (id, text, reactions, createdAt, onReact) are its inputs.

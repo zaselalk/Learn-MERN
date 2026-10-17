@@ -1,11 +1,10 @@
 import { useState } from "react";
-
-const MAX_LENGTH = 200;
+import { MAX_POST_LENGTH } from "../constants/reactions.js";
 
 export default function PostForm({ onPost }) {
   // The text box is "controlled": React state holds what you type.
   const [text, setText] = useState("");
-  const remaining = MAX_LENGTH - text.length;
+  const remaining = MAX_POST_LENGTH - text.length;
 
   function handleSubmit(event) {
     event.preventDefault(); // stop the browser reloading the page
@@ -29,7 +28,7 @@ export default function PostForm({ onPost }) {
           value={text}
           onChange={(event) => setText(event.target.value)}
           onKeyDown={handleKeyDown}
-          maxLength={MAX_LENGTH}
+          maxLength={MAX_POST_LENGTH}
           placeholder="What’s happening on campus?"
         />
       </div>
